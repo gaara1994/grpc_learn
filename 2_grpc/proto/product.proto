@@ -1,0 +1,43 @@
+//这一行指定了使用的 Protobuf 版本为 proto3。
+syntax = "proto3";
+
+//这是一个可选的配置选项，用于指定生成的 Go 代码的目录。
+//在这个例子中，Go 代码将被导入为 当前目录。
+//option go_package = ".";
+option go_package = "../pb";//这会在上级目录新建 pb 目录，并将生成的文件放在那里。
+
+//定义了 .proto 文件的命名空间，所有的消息类型和服务都会在这个命名空间下。
+//在这个例子中，所有消息类型和服务都属于 product 命名空间。
+package product;
+
+//定义了一个 gRPC 服务：ProductService，这个服务包含3个方法
+service ProductService {
+  rpc ListProducts(ListProductsRequest) returns (ListProductsResponse);
+  rpc GetProduct(GetProductRequest) returns (Product);
+  rpc ManageProduct(ManageProductRequest) returns (ManageProductResponse);
+}
+
+//定义了6个消息类型
+message ListProductsRequest{
+
+}
+
+message ListProductsResponse{
+
+}
+
+message GetProductRequest{
+
+}
+
+message Product{
+
+}
+
+message ManageProductRequest{
+
+}
+
+message ManageProductResponse{
+
+}
