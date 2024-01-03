@@ -19,10 +19,12 @@ service ProductService {
 
 //定义了6个消息类型
 message ListProductsRequest{
+  string name = 1;
 
 }
 
 message ListProductsResponse{
+  repeated Product Products = 1;
 
 }
 
@@ -45,3 +47,5 @@ message ManageProductRequest{
 message ManageProductResponse{
 
 }
+
+// protoc --go_out=. product.proto --go-grpc_out=. product.proto

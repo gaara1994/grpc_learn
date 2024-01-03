@@ -20,9 +20,19 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 
-	r, err := c.GetProduct(ctx, &pb.GetProductRequest{Id: 1})
+	//r, err := c.GetProduct(ctx, &pb.GetProductRequest{Id: 1})
+	//if err != nil {
+	//	log.Fatal("c.ListProduct err:", err.Error())
+	//}
+	//log.Println("获取响应", r)
+
+	r2, err := c.ListProducts(ctx, &pb.ListProductsRequest{Name: "手机"})
 	if err != nil {
 		log.Fatal("c.ListProduct err:", err.Error())
 	}
-	log.Println("获取响应", r)
+	log.Println("获取响应2", r2)
+	for _, product := range r2.Products {
+		log.Println(product)
+	}
+
 }

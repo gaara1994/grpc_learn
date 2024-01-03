@@ -16,7 +16,24 @@ type ProductServiceServer struct {
 // ListProducts 实现了 ProductService 接口中的对应方法。
 func (s *ProductServiceServer) ListProducts(ctx context.Context, req *pb.ListProductsRequest) (*pb.ListProductsResponse, error) {
 	// 这里应填充实际的产品列表获取逻辑
-	return &pb.ListProductsResponse{}, nil // 示例返回空响应
+	log.Println("收到关键字请求:", req.GetName())
+	arr := make([]*pb.Product, 0)
+	arr = append(arr, &pb.Product{
+		Id:       1,
+		Name:     req.GetName() + "1",
+		Price:    2999,
+		Image:    "phone1.jpg",
+		Category: 1,
+	})
+	arr = append(arr, &pb.Product{
+		Id:       1,
+		Name:     req.GetName() + "2",
+		Price:    2999,
+		Image:    "phone2.jpg",
+		Category: 1,
+	})
+	res := pb.ListProductsResponse{Products: arr}
+	return &res, nil // 返回产品列表
 }
 
 // GetProduct 实现了 ProductService 接口中的对应方法。
