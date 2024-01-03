@@ -4,6 +4,7 @@ import (
 	"context"
 	"google.golang.org/grpc"
 	"grpc_learn/2_grpc/pb"
+	"log"
 )
 
 // ProductServiceServer 是 Product 服务的具体实现。
@@ -21,7 +22,16 @@ func (s *ProductServiceServer) ListProducts(ctx context.Context, req *pb.ListPro
 // GetProduct 实现了 ProductService 接口中的对应方法。
 func (s *ProductServiceServer) GetProduct(ctx context.Context, req *pb.GetProductRequest) (*pb.Product, error) {
 	// 这里应填充根据请求参数获取单个产品的逻辑
-	return &pb.Product{}, nil // 示例返回空产品
+	log.Println("收到请求:", req.GetId())
+	//创建一个产品
+	pro := pb.Product{
+		Id:       req.GetId(),
+		Name:     "手机",
+		Price:    1999,
+		Image:    "phone.jpg",
+		Category: 1,
+	}
+	return &pro, nil // 示例返回产品
 }
 
 // ManageProduct 实现了 ProductService 接口中的对应方法。

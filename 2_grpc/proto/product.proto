@@ -27,11 +27,15 @@ message ListProductsResponse{
 }
 
 message GetProductRequest{
-
+  int64 id = 1;//商品id
 }
 
 message Product{
-
+  int64 id = 1;//商品id
+  string name = 2;//商品名字
+  float price = 3;//商品价格
+  string image = 4;//商品图片
+  int64 category = 5;//商品分类id
 }
 
 message ManageProductRequest{
