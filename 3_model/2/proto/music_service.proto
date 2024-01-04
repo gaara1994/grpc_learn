@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "../pb";
+
+service MusicService {
+  // 用户请求获取某位歌手的所有歌曲列表
+  rpc ListSongs(ArtistRequest) returns (stream SongResponse) {}
+}
+
+// 定义请求消息类型
+message ArtistRequest {
+  string artist_name = 1;//歌手名字
+}
+
+// 定义响应消息类型
+message SongResponse {
+
+  string song_name = 1;	//歌曲名
+  string album = 2;		//所属唱片
+  int32 release_year = 3;//发版年份
+}
+
+//protoc --go_out=. music_service.proto --go-grpc_out=. music_service.proto
