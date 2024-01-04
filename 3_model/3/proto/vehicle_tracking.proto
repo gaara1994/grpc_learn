@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "../pb";
+
+service VehicleTrackingService {
+  rpc RecordVehicleRoute(stream VehicleLocation) returns (RouteSummary) {}
+}
+
+message VehicleLocation {
+  string vehicle_id = 1;
+  double latitude = 2;
+  double longitude = 3;
+  int64 timestamp = 4; // 时间戳
+}
+
+message RouteSummary {
+  string vehicle_id = 1;
+  int32 total_distance = 2; // 总行驶距离
+  int32 max_speed = 3; // 最高速度
+  int64 start_time = 4; // 行程开始时间戳
+  int64 end_time = 5; // 行程结束时间戳
+}
+
+// protoc --go_out=. vehicle_tracking.proto --go-grpc_out=. vehicle_tracking.proto
