@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package = "../pb";
+
+//从流中获取多个参数，然后求和返回
+service CalculateService{
+  rpc Sum(stream SumRequest) returns (SumResponse){};
+}
+
+message SumRequest{
+  int64 number = 1;
+}
+
+message SumResponse{
+  int64 number = 1;
+}
+
+// protoc --go_out=. calculate.proto --go-grpc_out=. calculate.proto
