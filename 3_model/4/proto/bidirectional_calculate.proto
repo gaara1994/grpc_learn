@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "../pb";
+
+service CalculateService {
+  rpc BidirectionalSum(stream SumRequest) returns (stream SumResponse){};
+}
+
+message SumRequest{
+  int64 number = 1;
+}
+
+message SumResponse{
+  int64 number = 1;
+}
+
+// protoc --go_out=. bidirectional_calculate.proto  --go-grpc_out=. bidirectional_calculate.proto
